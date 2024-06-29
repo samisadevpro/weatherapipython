@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- External CSS and fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}"> <!-- Link to your custom CSS file -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="heading">Weather App</h1>
+        <!-- Form to input city -->
+        <form id="weather-form">
+            <div class="input-group">
+                <input type="text" id="city" name="city" placeholder="Enter city" required>
+                <button type="submit" id="get-weather-button">Get Weather</button>
+            </div>
+        </form>
+        <!-- Container for weather results -->
+        <div id="weather-result">
+            <!-- Weather results will be displayed here -->
+        </div>
+        <button id="clear-button" style="display: none;">Clear</button> <!-- Clear button initially hidden -->
+    </div>
+
+    <!-- JavaScript code for handling form submission and displaying weather -->
+    <script>
+        $(document).ready(function() {
+            $('#weather-form').on('submit', function(event) {
+                event.preventDefault(); // Prevent default form submission
+
+                // Get city input value
+                var city = $('#city').val();
+
+                // AJAX request to Flask endpoint
+                $.ajax({
+                    url: '/get_weather',
+                    method: 'POST',
+                    data: { city: city }, // Send city data to server
+                    success: function(response) {
+                        if (response.error) {
+                            // Display error message if city not found
+                            $('#weather-result').html('<p>' + response.error + '</p>');
+                        } else {
+                            // Display weather information if successful response
+                            $('#weather-result').html(
+                                '<h2>Weather in ' + response.city + '</h2>' +
+                                '<p class="weather-info">Current Temperature: ' + response.temperature + '°C</p>' +
+                                '<p class="weather-info">Min Temperature: ' + response.temp_min + '°C</p>' +
+                                '<p class="weather-info">Max Temperature: ' + response.temp_max + '°C</p>' +
+                                '<p class="weather-info">Description: ' + response.description + '</p>' +
+                                '<img src="http://openweathermap.org/img/w/' + response.icon + '.png" alt="Weather icon">'
+                            );
+                            $('#clear-button').show(); // Show clear button on successful weather retrieval
+                        }
+                    }
+                });
+            });
+
+            // Clear button functionality
+            $('#clear-button').on('click', function() {
+                $('#weather-result').html(''); // Clear weather results
+                $('#city').val(''); // Clear city input field
+                $(this).hide(); // Hide clear button when clicked
+            });
+        });
+    </script>
+</body>
+</html>

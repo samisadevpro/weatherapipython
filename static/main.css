@@ -1,0 +1,92 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #1a1a1a; /* Dark background */
+  color: #ffffff; /* White text */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}
+
+/* Container styles */
+.container {
+  text-align: center;
+  background: #333333; /* Darker background */
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+  border-radius: 8px; /* Rounded corners */
+}
+
+/* Heading styles */
+.heading {
+  margin-bottom: 20px; /* Space below the heading */
+  color: #64b5f6; /* Blue accent color */
+  font-size: 2.5rem; /* Larger font size */
+  text-transform: uppercase; /* Uppercase text */
+}
+
+/* Input group styles */
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px; /* Space below input group */
+}
+
+/* Text input styles */
+input[type="text"] {
+  flex: 1; /* Flexible width */
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #757575; /* Darker border */
+  border-radius: 4px; /* Rounded corners */
+  background-color: #212121; /* Dark input background */
+  color: #ffffff; /* White text */
+}
+
+/* Button styles */
+button {
+  padding: 10px 20px; /* Slightly larger padding */
+  background: #42a5f5; /* Light blue button */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+}
+
+/* Hover effect for buttons */
+button:hover {
+  background: #1e88e5; /* Darker blue on hover */
+}
+
+/* Weather result display area */
+#weather-result {
+  margin-top: 20px; /* Space above weather results */
+}
+
+/* Weather information styles */
+.weather-info {
+  font-size: 1.2rem;
+  margin-bottom: 10px; /* Space below each weather info paragraph */
+  color: #cccccc; /* Lighter text for weather info */
+}
+
+/* Clear button styles */
+#clear-button {
+  padding: 10px 20px; /* Slightly larger padding */
+  background: #757575; /* Dark button */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth hover transition */
+  display: none; /* Initially hidden */
+}
+
+/* Hover effect for the clear button */
+#clear-button:hover {
+  background: #616161; /* Darker button on hover */
+}
